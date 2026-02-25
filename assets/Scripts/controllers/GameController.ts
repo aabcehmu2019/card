@@ -76,8 +76,6 @@ export class GameController extends Component {
     private _createCardNode(data: any) {
         const cardNode = instantiate(this.cardPrefab);
         let parent: Node;
-        let posX = data.position.x;
-        let posY = data.position.y;
 
         switch (data.area) {
             case 'main':
@@ -87,8 +85,7 @@ export class GameController extends Component {
                 parent = this.stockPile;
                 const existingCards = this.stockPile.children;
                 const idx = existingCards.length;
-                posX += idx * 100;
-                console.log('stock区域第',idx,'个元素的位置是',posX);
+                data.position.x += idx * 100;
                 break;
             case 'discard':
                 parent = this.discardPile;
@@ -96,7 +93,7 @@ export class GameController extends Component {
             default: return;
         }
         cardNode.setParent(parent);
-        cardNode.setPosition(posX, posY);
+        cardNode.setPosition(data.position.x, data.position.y);
 
         // 获取 CardView 组件
         const cardView = cardNode.getComponent(CardView);
