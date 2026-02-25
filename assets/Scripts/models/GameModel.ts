@@ -45,9 +45,9 @@ export class GameModel {
     }
 
     /**
-     * 获取指定区域中的所有卡片，按ID升序排序
+     * 获取指定区域中的所有卡牌
      * @param area - 区域标识（如 'main', 'stock', 'discard'）
-     * @returns 该区域的卡片数组
+     * @returns 该区域的卡牌数组
      */
     public getCardsInArea(area: string): CardData[] {
         const result: CardData[] = [];
@@ -56,7 +56,7 @@ export class GameModel {
                 result.push(card);
             }
         });
-        return result.sort((a, b) => a.id - b.id);
+        return result;
     }
 
     /**
